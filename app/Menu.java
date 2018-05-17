@@ -59,31 +59,43 @@ public class Menu {
 	}
 
 	private void linkCity() {
-		System.out.print("First City id: ");
-		int c1 = Integer.parseInt(sc.nextLine()) - 1;
-		System.out.print("Second City id: ");
-		int c2 = Integer.parseInt(sc.nextLine()) - 1;
-		System.out.print("Distance: ");
-		int d = Integer.parseInt(sc.nextLine());
+		try {
+			System.out.print("First City id: ");
+			int c1 = Integer.parseInt(sc.nextLine()) - 1;
+			System.out.print("Second City id: ");
+			int c2 = Integer.parseInt(sc.nextLine()) - 1;
+			System.out.print("Distance: ");
+			int d = Integer.parseInt(sc.nextLine());
 
-		gr.linkCities(c1, c2, d);
+			gr.linkCities(c1, c2, d);
+			
+		} catch (Exception e) {
+			System.out.println("Invalid input");
+		}
+		
 	}
 
 	private void calculateRoute() {
-		System.out.print("Source City id:");
-		int c1 = Integer.parseInt(sc.nextLine()) - 1;
-		System.out.print("Dest City id:");
-		int c2 = Integer.parseInt(sc.nextLine()) - 1;
+		try {
+			System.out.print("Source City id: ");
+			int c1 = Integer.parseInt(sc.nextLine()) - 1;
+			System.out.print("Dest City id: ");
+			int c2 = Integer.parseInt(sc.nextLine()) - 1;
 
-		LinkedList<City> path = gr.shortestPathFromTo(c1, c2);
+			LinkedList<City> path = gr.shortestPathFromTo(c1, c2);
 
-		int totalDist = 0;
-		for (int i = 0; i < path.size(); i++) {
-			System.out.println((i + 1) + ". " + path.get(i));
-			if (i > 0) {
-				totalDist += gr.getDistance(path.get(i), path.get(i - 1));
+			int totalDist = 0;
+			for (int i = 0; i < path.size(); i++) {
+				System.out.println((i + 1) + ". " + path.get(i));
+				if (i > 0) {
+					totalDist += gr.getDistance(path.get(i), path.get(i - 1));
+				}
 			}
+			System.out.println("Total distance = " + totalDist);
+			
+		} catch (Exception e) {
+			System.out.println("Invalid input");
 		}
-		System.out.println("Total distance = " + totalDist);
+		
 	}
 }
